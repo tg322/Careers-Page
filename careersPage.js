@@ -1,3 +1,4 @@
+
 //Please do yourself a favour and copy and paste this code into an empty js file in your IDE, everything will make more sense with a bigger view.
 
 function debounce(func, timeout = 300){
