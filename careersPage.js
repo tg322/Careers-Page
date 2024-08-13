@@ -34,6 +34,7 @@ function debounce(func, timeout = 300){
                 isDesktop = false;
                 //run mobile function
                 mobile();
+                destroyDesktopEventListeners();
             }
         }
 
