@@ -1,0 +1,231 @@
+/* Customising CSS for built-in Classes ************************************* */
+
+.body{
+    display:flex;
+    width:100%;
+    justify-content:center;
+    padding:0px !important;
+    flex-direction:column;
+    align-items: center;
+}
+.container{
+    margin:0px;
+    width:100%;
+    display:flex;
+    max-width:100%;
+    justify-content:center;
+    padding: 0px;
+}
+.row{
+    display:flex;
+    width:100%;
+    margin-top:0px !important;
+}
+/* ************************************************************************** */
+
+/* Structure Classes ******************************************************** */
+
+.customContainer{
+    max-width:1200px;
+    display:flex;
+    width:100%;
+    flex-direction:column;
+    gap:40px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+}
+.customCol{
+    display:flex;
+    width:100%;
+    flex-direction:column;
+    box-sizing:border-box;
+    justify-content:center;
+}
+.customRow{
+    display:flex;
+    width:100%;
+}
+@media screen and (max-width: 992px) {
+  .customRow {
+    flex-direction:column;
+  }
+}
+.textContainer{
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+}
+.fullImageContainer{
+    display:flex;
+    width:100%;
+    height:100%;
+}
+.paddingLeft{
+    padding-left:20px;
+}
+.paddingRight{
+    padding-right:20px;
+}
+.titleContainer{
+    display:flex;
+    width:100%;
+    justify-content:center;
+    flex-direction:column;
+}
+.subheadingContainer{
+    display:flex;
+    width:fit-content;
+    border-bottom:solid 2px #ffa300;
+    margin-bottom:15px;
+}
+.desktop{
+    display:none;
+}
+
+@media screen and (min-width: 881px) {
+    .desktop {
+        display:flex;
+    }
+}
+
+.mobile{
+    display:none;
+}
+    
+@media screen and (max-width: 880px) {
+    .mobile {
+        display:flex;
+    }
+}
+.page-subHeading{
+    font-weight:600;
+}
+/* ************************************************************************** */
+
+/* Colour Definition Classes ************************************************ */
+
+.spccPurpleColor{
+    color:#6d2077;
+}
+.spccPurpleBGColor{
+    background-color:#6d2077;
+}
+.spccWhiteColor{
+    color:white;
+}
+.spccWhiteBGColor{
+    background-color:white;
+}
+/* ************************************************************************** */
+
+/* Page Specific CSS ******************************************************** */
+
+#historyImage{
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.gallery{
+    display:flex;
+    flex-direction:row;
+    height:600px;
+    width:100%;
+    gap:20px;
+}
+.largeGalleryImage{
+    display:flex;
+    width:50%;
+    height:100%;
+    background-color:green;
+}
+.gallerySmallerImages{
+    display:flex;
+    width:50%;
+    height:100%;
+    flex-direction:column;
+    box-sizing:border-box;
+    gap:20px;
+}
+.mediumGalleryImage{
+    display:flex;
+    width:100%;
+    height:50%;
+    background-color:red;
+}
+.gallerySmallestImages{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    height:50%;
+    gap:20px;
+}
+.smallGalleryImage{
+    width:50%;
+    display:flex;
+    height:100%;
+    background-color:blue;
+}
+.galleryImage{
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    align-items:flex-end;
+    cursor:pointer;
+}
+.imageCaption{
+    width:100%;
+    height:50px;
+    padding:10px 25px;
+    box-sizing:border-box;
+    display:flex;
+    background-color:#3737377d;
+    font-style:italic;
+    align-self:end;
+}
+.swiper {
+  width: 100%;
+  height: 400px;
+}
+.swiperGalleryImage{
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+.swiperContainer{
+    display:flex;
+    height:100%;
+    width:100%;
+    min-height:30vh;
+}
+.ourMissionSwiper{
+    max-width: 550px;
+    width:100%;
+    height: 100%;
+    overflow:hidden;
+}
+.swiperOurMissionImage{
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    display:flex;
+}
+.image{
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+.quoteImageContainer{
+    height:300px;
+    background-position:top;
+    margin-top:40px;
+}
+.quoteText{
+    width:100%;
+    align-items:center;
+    justify-content:center;
+    display:flex;
+    font-family: serif;
+    font-style: italic;
+    font-size: xx-large;
+    color: #56105f;
+    font-weight: lighter;
+}
