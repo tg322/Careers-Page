@@ -78,7 +78,7 @@ function debounce(func, timeout = 300){
             }
 
             let quoteImage = document.getElementById("quoteImage");
-            quoteImage.style.backgroundImage = 'url("/DataFiles/CareerPage/209267/252869/305158_600_0.jpg")';
+            quoteImage.style.backgroundImage = 'url("https://cdn.jsdelivr.net/gh/tg322/Careers-Page/spccRays.svg")';
 
         }
 
