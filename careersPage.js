@@ -184,4 +184,9 @@ function debounce(func, timeout = 300){
             element.style.backgroundImage = 'url("' + galleryImages[i] + '")';
             }
         }
+        function destroyDesktopEventListeners(){
+            if(getEventListeners(document.querySelector('.galleryImage')) > 0){
+                document.querySelector('.galleryImage').removeEventListener('click', handleClick);
+            }
+        }
     });
