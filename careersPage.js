@@ -80,6 +80,12 @@ function debounce(func, timeout = 300){
           document.body.appendChild(parentDiv);
       }
 
+      function hideGalleryImage(){
+        imageViewElement = document.getElementById("imageView");
+        imageViewElement.remove();
+        
+    }
+
         function global(){
             //This function runs once and regardless of screen width e.g setting background images for static single images where responsive html structure does not exist/not used. 
             let spccWelcomeImage;
@@ -148,11 +154,7 @@ function debounce(func, timeout = 300){
             element.addEventListener('click', () => showGalleryImages(element));
             }
             
-            function hideGalleryImage(){
-                imageViewElement = document.getElementById("imageView");
-                imageViewElement.remove();
-                
-            }
+            
         }
 
         function mobileAboutUs(){
