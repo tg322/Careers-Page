@@ -71,6 +71,7 @@
 .customRow{
     display:flex;
     width:100%;
+    gap:40px;
 }
 @media screen and (max-width: 992px) {
   .customRow {
