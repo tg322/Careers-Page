@@ -190,13 +190,14 @@ function debounce(func, timeout = 300){
             element.style.backgroundImage = 'url("' + galleryImages[i] + '")';
             }
         }
+
         function destroyDesktopEventListeners(){
           let galleryImageContainers;
           galleryImageContainers = document.getElementsByClassName("galleryImage");
           
           for (let i = 0; i < galleryImageContainers.length; i++) {
           const element = galleryImageContainers[i];
-          element.removeEventListener('click', () => showGalleryImages(element));
+           element.removeEventListener('click', showGalleryImages);
           }
         }
     });
