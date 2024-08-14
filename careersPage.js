@@ -38,6 +38,48 @@ function debounce(func, timeout = 300){
             }
         }
 
+        function showGalleryImages(element){
+          let imageSrc = element.style.backgroundImage;
+          imageSrc = imageSrc.slice(imageSrc.indexOf('"')+1, imageSrc.lastIndexOf('"'));
+          // Create the parent div
+          const parentDiv = document.createElement('div');
+          parentDiv.setAttribute("id", "imageView");
+          // Apply styles to the parent div
+          parentDiv.style.position = 'fixed';
+          parentDiv.style.backgroundColor = '#000000b0';
+          parentDiv.style.width = '100%';
+          parentDiv.style.display = 'flex';
+          parentDiv.style.boxSizing = 'border-box';
+          parentDiv.style.padding = '0px 20px';
+          parentDiv.style.justifyContent = 'center';
+          parentDiv.style.alignItems = 'center';
+          parentDiv.style.height = '100%';
+          parentDiv.style.top = '50%';
+          parentDiv.style.left = '50%';
+          parentDiv.style.transform = 'translate(-50%, -50%)'; // Centers the div
+          parentDiv.style.zIndex = '1000'; // Ensure it appears on top
+          parentDiv.addEventListener('click', () => hideGalleryImage());
+          // Create the child div
+          const childDiv = document.createElement('img');
+          
+          // Apply styles to the child div
+          childDiv.style.position = 'absolute';
+          childDiv.style.width = '100%';
+          childDiv.style.maxWidth = 'max-content';
+          childDiv.style.height = 'auto';
+          childDiv.style.maxHeight = '600px'
+          childDiv.style.top = '50%';
+          childDiv.style.left = '50%';
+          childDiv.style.transform = 'translate(-50%, -50%)';
+          childDiv.setAttribute('src', imageSrc);
+          
+          // Append the child div to the parent div
+          parentDiv.appendChild(childDiv);
+          
+          // Append the parent div to the body
+          document.body.appendChild(parentDiv);
+      }
+
         function global(){
             //This function runs once and regardless of screen width e.g setting background images for static single images where responsive html structure does not exist/not used. 
             let spccWelcomeImage;
@@ -106,48 +148,6 @@ function debounce(func, timeout = 300){
             element.addEventListener('click', () => showGalleryImages(element));
             }
             
-            function showGalleryImages(element){
-                let imageSrc = element.style.backgroundImage;
-                imageSrc = imageSrc.slice(imageSrc.indexOf('"')+1, imageSrc.lastIndexOf('"'));
-                // Create the parent div
-                const parentDiv = document.createElement('div');
-                parentDiv.setAttribute("id", "imageView");
-                // Apply styles to the parent div
-                parentDiv.style.position = 'fixed';
-                parentDiv.style.backgroundColor = '#000000b0';
-                parentDiv.style.width = '100%';
-                parentDiv.style.display = 'flex';
-                parentDiv.style.boxSizing = 'border-box';
-                parentDiv.style.padding = '0px 20px';
-                parentDiv.style.justifyContent = 'center';
-                parentDiv.style.alignItems = 'center';
-                parentDiv.style.height = '100%';
-                parentDiv.style.top = '50%';
-                parentDiv.style.left = '50%';
-                parentDiv.style.transform = 'translate(-50%, -50%)'; // Centers the div
-                parentDiv.style.zIndex = '1000'; // Ensure it appears on top
-                parentDiv.addEventListener('click', () => hideGalleryImage());
-                // Create the child div
-                const childDiv = document.createElement('img');
-                
-                // Apply styles to the child div
-                childDiv.style.position = 'absolute';
-                childDiv.style.width = '100%';
-                childDiv.style.maxWidth = 'max-content';
-                childDiv.style.height = 'auto';
-                childDiv.style.maxHeight = '600px'
-                childDiv.style.top = '50%';
-                childDiv.style.left = '50%';
-                childDiv.style.transform = 'translate(-50%, -50%)';
-                childDiv.setAttribute('src', imageSrc);
-                
-                // Append the child div to the parent div
-                parentDiv.appendChild(childDiv);
-                
-                // Append the parent div to the body
-                document.body.appendChild(parentDiv);
-            }
-            
             function hideGalleryImage(){
                 imageViewElement = document.getElementById("imageView");
                 imageViewElement.remove();
@@ -189,8 +189,12 @@ function debounce(func, timeout = 300){
             }
         }
         function destroyDesktopEventListeners(){
-            if(getEventListeners(document.querySelector('.galleryImage')) > 0){
-                document.querySelector('.galleryImage').removeEventListener('click', handleClick);
-            }
+          let galleryImageContainers;
+          galleryImageContainers = document.getElementsByClassName("galleryImage");
+          
+          for (let i = 0; i < galleryImageContainers.length; i++) {
+          const element = galleryImageContainers[i];
+          element.removeEventListener('click', () => showGalleryImages(element));
+          }
         }
     });
