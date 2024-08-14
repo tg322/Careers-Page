@@ -25,6 +25,15 @@
 
 /* Structure Classes ******************************************************** */
 
+.customWrapper{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    width:100%;
+    height:100%;
+}
 .customContainer{
     max-width:1200px;
     display:flex;
@@ -34,6 +43,11 @@
     padding: 0px 15px;
     box-sizing: border-box;
 }
+.customSection{
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+}
 .customCol{
     display:flex;
     width:100%;
@@ -41,6 +55,19 @@
     box-sizing:border-box;
     justify-content:center;
 }
+.w70{
+    width:70%;
+}
+.w30{
+    width:30%;
+}
+.w60{
+    width:60%;
+}
+.w40{
+    width:40%;
+}
+
 .customRow{
     display:flex;
     width:100%;
@@ -219,7 +246,6 @@
 .quoteImageContainer{
     height:300px;
     background-position:top;
-    margin-top:40px;
 }
 .quoteText{
     width:100%;
@@ -231,4 +257,8 @@
     font-size: xx-large;
     color: #56105f;
     font-weight: lighter;
+}
+.circleImage{
+    width:100%;
+    height:auto;
 }
