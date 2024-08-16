@@ -14,7 +14,7 @@ function customStateManagement(operation, name = null, value = null){
   switch (operation) {
     case 'new':
       //check name and value have been passed
-      if(name == null || value == null){
+      if(name == null){
         throw new Error('customStateManagement Err: New operation requires the name and value of the new object to be passed.');
       }
       //check if the state name is unique
@@ -67,8 +67,6 @@ function customStateManagement(operation, name = null, value = null){
       if(state === undefined){
         throw new Error('customStateManagement Err: Read operation, a state with that name does not exist.');
       }
-      //return state
-      console.log(state);
       return state;
     // add more cases if necessary
     default:
@@ -77,23 +75,29 @@ function customStateManagement(operation, name = null, value = null){
 
 }
 
+
+customStateManagement('new', 'isDesktop', null);
+
+let galleryImages = ["/DataFiles/CareerPage/209267/252869/305106_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305107_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305108_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305109_600_0.jpg"];
+
 document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('resize', debounce(responsive, 150));
 
   //initialise js
-  customStateManagement('new', 'isDesktop', null);
-
+  
+  
   global();
+  responsive();
 
   function responsive(){
     const width = window.innerWidth;
     let isDesktop = customStateManagement('read', 'isDesktop');
     if(width >= 880 && isDesktop.value !== true){
-      customStateManagement('edit', 'isDesktop', true);
+      customStateManagement('update', 'isDesktop', true);
       //run desktop function
       desktop()
-    }else if(width < 880 && isDesktop !== false){
-      customStateManagement('edit', 'isDesktop', false);
+    }else if(width < 880 && isDesktop.value !== false){
+      customStateManagement('update', 'isDesktop', false);
       //run mobile function
       mobile();
       destroyDesktopEventListeners();
@@ -108,6 +112,17 @@ document.addEventListener("DOMContentLoaded", function() {
     mobileAboutUs();
   }
 });
+
+function desktopAboutUs(){
+  let galleryImageContainers;
+  galleryImageContainers = document.getElementsByClassName("galleryImage");
+  
+  for (let i = 0; i < galleryImageContainers.length; i++) {
+  const element = galleryImageContainers[i];
+  element.style.backgroundImage = 'url("' + galleryImages[i] + '")';
+  element.addEventListener('click', showGalleryImages);
+  }
+}
 
 function mobileAboutUs(){
   let galleryImageContainers;
@@ -147,7 +162,8 @@ function mobileAboutUs(){
   }
 }
 
-function showGalleryImages(element){
+function showGalleryImages(event){
+  let element = event.currentTarget;
   let imageSrc = element.style.backgroundImage;
   imageSrc = imageSrc.slice(imageSrc.indexOf('"')+1, imageSrc.lastIndexOf('"'));
   // Create the parent div
@@ -247,16 +263,7 @@ function destroyDesktopEventListeners(){
   galleryImageContainers = document.getElementsByClassName("galleryImage");
   
   for (let i = 0; i < galleryImageContainers.length; i++) {
-  const element = galleryImageContainers[i];
-   element.removeEventListener('click', showGalleryImages);
+    let element = galleryImageContainers[i];
+    element.removeEventListener('click', showGalleryImages);
   }
 }
-
-
-
-
-
-
-
-
-
