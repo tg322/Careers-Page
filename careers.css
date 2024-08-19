@@ -115,6 +115,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    min-height:30vh;
 }
 .paddingLeft{
     padding-left:20px;
