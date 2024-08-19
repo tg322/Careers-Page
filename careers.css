@@ -1,4 +1,4 @@
-.body{
+.body:not(:first-of-type:nth-of-type(2):nth-of-type(3)){
     display:flex;
     width:100%;
     justify-content:center;
@@ -14,7 +14,7 @@
     justify-content:center;
     padding: 0px;
 }
-.row{
+.row:not(:first-of-type:nth-of-type(2):nth-of-type(3)){
     display:flex;
     width:100%;
     margin-top:0px !important;
