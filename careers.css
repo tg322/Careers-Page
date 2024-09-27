@@ -1,24 +1,7 @@
-.body{
-    display:flex;
-    width:100%;
-    justify-content:center;
-    padding:0px !important;
-    flex-direction:column;
-    align-items: center;
-}
-.container:not(:nth-of-type(1)):not(:nth-of-type(2)):not(:nth-of-type(3)){
-    margin:0px;
-    width:100% !important;
-    display:flex;
-    max-width:100%;
-    justify-content:center;
-    padding: 0px;
-}
-.row{
-    display:flex;
-    width:100%;
-    margin-top:0px !important;
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
 .customWrapper{
     display:flex;
     flex-direction:column;
@@ -27,6 +10,8 @@
     gap:40px;
     width:100%;
     height:100%;
+    padding:40px 0px;
+    box-sizing: border-box;
 }
 .customContainer{
     max-width:1200px;
@@ -67,6 +52,11 @@
     flex-direction:column;
   }
 }
+@media screen and (max-width: 992px) {
+    .customRowRev {
+      flex-direction:column-reverse;
+    }
+  }
 .w70{
     width:70%;
 }
@@ -179,11 +169,20 @@
 .spccPurpleBGColor{
     background-color:#6d2077;
 }
+.spccPurpleBGColorSecondary{
+    background-color:#6d207729;
+}
 .spccWhiteColor{
     color:white;
 }
 .spccWhiteBGColor{
     background-color:white;
+}
+.spccOrangeColor{
+    color:#ffa300;
+}
+.spccOrangeBGColor{
+    background-color:#ffa300;
 }
 
 
@@ -281,7 +280,7 @@
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
-    display:flex;
+    display:flex !important;
 }
 .image{
     background-size:cover;
@@ -301,4 +300,6 @@
     font-size: xx-large;
     color: #56105f;
     font-weight: lighter;
+    padding: 0px 15px;
+    text-align: center;
 }
