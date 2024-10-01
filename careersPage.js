@@ -95,9 +95,6 @@ function states(){
         throw new Error('customStateManagement Err: Read operation, a state with that name does not exist.');
       }
       return state.value;
-    },
-    onChange(onChangeFunction){
-      onChangeFunction();
     }
 
   }
@@ -114,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
   //initialise js
   
   
-  global().setupNav();
+  global();
   responsive();
 
   function responsive(){
@@ -124,16 +121,73 @@ document.addEventListener("DOMContentLoaded", function() {
       // customStateManagement('update', 'isDesktop', true);
       states().update('isDesktop', true);
       //run desktop function
-      // desktop()
+      desktop()
     }else if(width < 880 && states().read('isDesktop') !== false){
       // customStateManagement('update', 'isDesktop', false);
       states().update('isDesktop', false);
       //run mobile function
-      // mobile();
-      destroyDesktopEventListeners('galleryImage', 'click', showGalleryImages);
+      mobile();
+      destroyDesktopEventListeners();
     }
   }
+  function desktop(){
+    //This function defines the desktop functions.
+    desktopAboutUs();
+  }
+  function mobile(){
+    //This function defines the mobile functions.
+    mobileAboutUs();
+  }
 });
+
+function desktopAboutUs(){
+
+  setImage('class', 'galleryImage', ["/DataFiles/CareerPage/209267/252869/305106_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305107_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305108_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305109_600_0.jpg"]);
+  let galleryImageContainers;
+  galleryImageContainers = document.getElementsByClassName("galleryImage");
+  for (let i = 0; i < galleryImageContainers.length; i++) {
+  const element = galleryImageContainers[i];
+  element.addEventListener('click', showGalleryImages);
+  }
+}
+
+function mobileAboutUs(){
+  let galleryImageContainers;
+  const swiperElement = document.querySelector('.swiper');
+  if(!swiperElement.swiper){
+    const swiper = new Swiper('.swiper', {
+      // Optional parameters
+      direction: 'horizontal',
+      loop: true,
+      autoplay: {
+         delay: 3500,
+       },
+    
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    
+      // And if we need scrollbar
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+  }
+  
+  galleryImageContainers = document.getElementsByClassName("swiperGalleryImage");
+  
+  for (let i = 0; i < galleryImageContainers.length; i++) {
+  const element = galleryImageContainers[i];
+  element.style.backgroundImage = 'url("' + galleryImages[i] + '")';
+  }
+}
 
 function showGalleryImages(event){
   let element = event.currentTarget;
@@ -185,167 +239,112 @@ imageViewElement.remove();
 }
 
 function global(){
-  //currently working on initialising and destroying swipers based on current page, here I have literally just pasted this swiper in, nothing else. All still a WIP...
-  return{
-    setupNav(){
-      const menuItems = document.getElementsByClassName('navbar-nav')[0].querySelectorAll('li');
-      const pageSections = document.getElementsByClassName('text-component');
-    
-      for(let i = 0; i < menuItems.length; i++){
-        menuItems[i].addEventListener('click', menuItemClicked);
-      }
-    
-      for(let i = 0; i < pageSections.length; i++){
-        if(menuItems[i]){
-          let formattedId = menuItems[i].textContent.trim().replace(/\s+/g, '-').toLowerCase();
-          pageSections[i].setAttribute("menu-id", formattedId);
-          if(i !== 0){
-            pageSections[i].classList.add('hideSection');
-          }
-        }
-      }
-    },
-    welcome(){
-      setImage('id', 'welcomeImage', 'url("/DataFiles/CareerPage/209267/252869/305105.jpg")');
-    },
-    aboutUs(){
-      const missionSwiper = new Swiper('.ourMissionSwiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: true,
-        autoplay: {
-           delay: 3500,
-         },
-      
-        // If we need pagination
-        pagination: {
-          el: '.swiper-pagination',
-        },
-      
-        // Navigation arrows
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      
-        // And if we need scrollbar
-        scrollbar: {
-          el: '.swiper-scrollbar',
-        },
-      });
-      setImage('class', 'swiperOurMissionImage', ["/DataFiles/CareerPage/209267/252869/305110.jpg", "/DataFiles/CareerPage/209267/252869/305154.jpg", "/DataFiles/CareerPage/209267/252869/305155.jpg", "/DataFiles/CareerPage/209267/252869/305156.jpg"]);
-      setImage('id', 'quoteImage', 'url("https://cdn.jsdelivr.net/gh/tg322/Careers-Page/spccRays.svg")');
-    },
-    workingAtStPauls(){
-      const teacherSwiper = new Swiper('.teacher-benefits-swiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: true
-        },
-        loop: false,
-        autoplay: {
-            delay: 4500,
-          },
-        // If we need pagination
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-          renderBullet: function (index, className) {
-            return '<span class="' + className + '">' + (index + 1) + "</span>";
-          },
-        },
-      
-        // Navigation arrows
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      
-        // And if we need scrollbar
-        scrollbar: {
-          el: '.swiper-scrollbar',
-        },
-    });
-    setImage('class', 'teacher-benefits-slide-image', ["/DataFiles/CareerPage/209267/252869/305316_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305644.jpg", "/DataFiles/CareerPage/209267/252869/305649.jpg", "/DataFiles/CareerPage/209267/252869/305650_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306993_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306995_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306996_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306997_600_0.jpg"]);
-    setImage('id', 'headTeacherImage', 'url("/DataFiles/CareerPage/209267/252869/305315.jpg")');
-    },
+
+  const menuItems = document.getElementsByClassName('navbar-nav')[0].querySelectorAll('li');
+  const pageSections = document.getElementsByClassName('text-component');
+
+  for(let i = 0; i < menuItems.length; i++){
+    menuItems[i].addEventListener('click', menuItemClicked);
   }
+
+  for(let i = 0; i < pageSections.length; i++){
+    if(menuItems[i]){
+      let formattedId = menuItems[i].textContent.trim().replace(/\s+/g, '-').toLowerCase();
+      pageSections[i].setAttribute("menu-id", formattedId);
+      if(i !== 0){
+        pageSections[i].classList.add('hideSection');
+      }
+    }
+  }
+
+  //This function runs once and regardless of screen width e.g setting background images for static single images where responsive html structure does not exist/not used. 
+  setImage('id', 'welcomeImage', 'url("/DataFiles/CareerPage/209267/252869/305105.jpg")');
+  const swiper = new Swiper('.ourMissionSwiper', {
+      // Optional parameters
+      direction: 'horizontal',
+      loop: true,
+      autoplay: {
+         delay: 3500,
+       },
+    
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    
+      // And if we need scrollbar
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+      observer: true,
+      observeParents: true,
+  });
+
+  teacherSwiper = new Swiper('.teacher-benefits-swiper', {
+    // Your existing options...
+    direction: 'horizontal',
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    loop: false,
+    autoplay: {
+      delay: 4500,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + "</span>";
+      },
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+    // Add the observer parameters
+    observer: true,
+    observeParents: true,
+  });
+
+
+  setImage('class', 'swiperOurMissionImage', ["/DataFiles/CareerPage/209267/252869/305110.jpg", "/DataFiles/CareerPage/209267/252869/305154.jpg", "/DataFiles/CareerPage/209267/252869/305155.jpg", "/DataFiles/CareerPage/209267/252869/305156.jpg"]);
+
+  setImage('id', 'quoteImage', 'url("https://cdn.jsdelivr.net/gh/tg322/Careers-Page/spccRays.svg")');
+
+  setImage('id', 'headTeacherImage', 'url("/DataFiles/CareerPage/209267/252869/305315.jpg")');
+
+  setImage('class', 'teacher-benefits-slide-image', ["/DataFiles/CareerPage/209267/252869/305316_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305644.jpg", "/DataFiles/CareerPage/209267/252869/305649.jpg", "/DataFiles/CareerPage/209267/252869/305650_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306993_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306995_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306996_600_0.jpg", "/DataFiles/CareerPage/209267/252869/306997_600_0.jpg"]);
+
+  setImage('id', 'contact-us-image', 'url("/DataFiles/CareerPage/209267/0/819a1e4a-0b14-4384-8188-d429ffc1a201_600_0.jpg")');
+
+  setImage('id', 'location-map-image', 'url("/DataFiles/CareerPage/209267/258588/307742_600_0.png")');
 }
 
-function destroyDesktopEventListeners(className, eventType, eventFunction){
+function destroyDesktopEventListeners(){
   let galleryImageContainers;
-  galleryImageContainers = document.getElementsByClassName(className);
+  galleryImageContainers = document.getElementsByClassName("galleryImage");
   
   for (let i = 0; i < galleryImageContainers.length; i++) {
     let element = galleryImageContainers[i];
-    element.removeEventListener(eventType, eventFunction);
-  }
-}
-
-function mobile(){
-  return{
-    aboutUs(){
-      let galleryImageContainers;
-      const swiperElement = document.querySelector('.swiper');
-      if(!swiperElement.swiper){
-        const swiper = new Swiper('.swiper', {
-          // Optional parameters
-          direction: 'horizontal',
-          loop: true,
-          autoplay: {
-             delay: 3500,
-           },
-        
-          // If we need pagination
-          pagination: {
-            el: '.swiper-pagination',
-          },
-        
-          // Navigation arrows
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        
-          // And if we need scrollbar
-          scrollbar: {
-            el: '.swiper-scrollbar',
-          },
-        });
-      }
-      
-      galleryImageContainers = document.getElementsByClassName("swiperGalleryImage");
-      
-      for (let i = 0; i < galleryImageContainers.length; i++) {
-      const element = galleryImageContainers[i];
-      element.style.backgroundImage = 'url("' + galleryImages[i] + '")';
-      }
-    }
-  }
-}
-
-function desktop(){
-  return{
-    aboutUs(){
-      setImage('class', 'galleryImage', ["/DataFiles/CareerPage/209267/252869/305106_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305107_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305108_600_0.jpg", "/DataFiles/CareerPage/209267/252869/305109_600_0.jpg"]);
-      let galleryImageContainers;
-      galleryImageContainers = document.getElementsByClassName("galleryImage");
-      for (let i = 0; i < galleryImageContainers.length; i++) {
-      const element = galleryImageContainers[i];
-      element.addEventListener('click', showGalleryImages);
-      }
-    }
+    element.removeEventListener('click', showGalleryImages);
   }
 }
 
 function menuItemClicked(event){
   let menuID = event.currentTarget.textContent.trim().replace(/\s+/g, '-').toLowerCase();
 
-  //If it is a new page, show it, hide the others.
   if(menuID !== states().read('currentPage')){
-    states().update('currentPage', menuID).onChange(initPage);
+    states().update('currentPage', menuID);
     const pageSections = document.getElementsByClassName('text-component');
     for(let i = 0; i < pageSections.length; i++){
       if(pageSections[i].getAttribute("menu-id") === menuID){
@@ -354,29 +353,11 @@ function menuItemClicked(event){
         pageSections[i].classList.add('hideSection');
       }
     }
+  }else{
+    console.log('same page clicked, do nothing....')
   }
-}
+  
 
-//I dont want to over complicate this, I need to find a simple and managable way of initialising and destroying swipers when clicking on a new page, otherwise some dont initialise correctly or use up too much memory if not visible.
-//I may just hard code a function and do some if statements to destroy swiper based on current page, it would just be easier but if developments demand it, I may have to abstract it a little to make it more managable.
-function initPage(){
-  switch (states.read('currentPage')) {
-    case 'welcome':
-      global().welcome();
-      break;
-    case 'about-us':
-      if(states().read('isDesktop') === true){
-        desktop().aboutUs();
-        global().aboutUs();
-      }else if(states().read('isDesktop') === false){
-        mobile().aboutUs();
-        global().aboutUs();
-      }
-      break;
-    case "working-at-st-paul's":
-      global().workingAtStPauls();
-      break;
-    default:
-      break;
-  }
+  
+
 }
