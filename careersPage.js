@@ -327,7 +327,7 @@ function global(){
 
   setImage('id', 'contact-us-image', 'url("/DataFiles/CareerPage/209267/0/819a1e4a-0b14-4384-8188-d429ffc1a201_600_0.jpg")');
 
-  setImage('id', 'location-map-image', 'url("/DataFiles/CareerPage/209267/258588/307742_600_0.png")');
+  setImage('id', 'location-map-image', 'url("https://cdn.jsdelivr.net/gh/tg322/Careers-Page@latest/Group%2045.png")');
 }
 
 function destroyDesktopEventListeners(){
